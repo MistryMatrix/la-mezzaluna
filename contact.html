@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact · La Mezzaluna</title>
+<meta name="description" content="Questions, reservations, private events — call, write, or come by.">
+<meta name="theme-color" content="#5C1F1F">
+<link rel="canonical" href="https://lamezzaluna.com/contact">
+
+<!-- Icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Mezzaluna">
+<meta property="og:title" content="Contact · La Mezzaluna">
+<meta property="og:description" content="Questions, reservations, private events — call, write, or come by.">
+<meta property="og:url" content="https://lamezzaluna.com/contact">
+<meta property="og:image" content="https://lamezzaluna.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact · La Mezzaluna">
+<meta name="twitter:description" content="Questions, reservations, private events — call, write, or come by.">
+<meta name="twitter:image" content="https://lamezzaluna.com/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=9">
+<style>
+  .ct-cols {
+    grid-column: 2 / span 10;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    margin-top: 64px;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .ct-cols { grid-column: 1 / -1; grid-template-columns: 1fr; gap: 56px; }
+  }
+  .ct-vert { width: 100%; }
+  .ct-vert-frame { overflow: hidden; }
+  .ct-vert-img {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background: var(--paper);
+    object-fit: cover;
+  }
+  .ct-vert-img.placeholder {
+    border: 1px solid var(--wine);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .ct-details-wrap {
+    grid-column: 2 / span 10;
+    margin-top: 96px;
+    padding-top: 48px;
+    border-top: 1px solid var(--hairline);
+  }
+  @media (max-width: 768px) {
+    .ct-details-wrap { grid-column: 1 / -1; }
+  }
+  .ct-details {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    row-gap: 24px;
+    column-gap: 24px;
+  }
+  .ct-details dt {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    color: var(--wine);
+    font-weight: 500;
+    padding-top: 4px;
+  }
+  .ct-details dd {
+    font-family: var(--sans);
+    font-size: 16px;
+    color: var(--ink);
+    line-height: 1.6;
+  }
+  @media (max-width: 768px) {
+    .ct-details { grid-template-columns: 1fr; row-gap: 4px; }
+    .ct-details dd { margin-bottom: 16px; }
+  }
+  .ct-form { max-width: 480px; position: relative; }
+  .ct-field { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .ct-field label {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    color: var(--wine);
+    font-weight: 500;
+  }
+  .ct-field input, .ct-field textarea {
+    font-family: var(--sans);
+    font-size: 14px;
+    padding: 12px 14px;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 0;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .ct-field textarea { resize: vertical; min-height: 140px; }
+  .ct-field input:focus, .ct-field textarea:focus { outline: none; border-color: var(--wine); }
+  .ct-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 480px) { .ct-row { grid-template-columns: 1fr; } }
+
+  .ct-submit {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    border: 1px solid var(--wine);
+    background: transparent;
+    color: var(--wine);
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .ct-submit:hover { background: var(--wine); color: var(--paper); }
+
+  .ct-form.done > *:not(.ct-confirm) { opacity: 0; pointer-events: none; transition: opacity 300ms ease-out; }
+  .ct-form.done .ct-confirm { opacity: 1; }
+  .ct-confirm {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 24px;
+    color: var(--wine);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms ease-out;
+  }
+</style>
+</head>
+<body>
+<div id="nav-host"></div>
+
+<main class="grid" style="margin-top: 48px;">
+  <h1 class="anchor-h smaller reveal">Get in touch.</h1>
+
+  <p class="body-p reveal" style="width: 700px;">Questions about reservations, private events, dietary accommodations, or feedback on a meal — write to us, call, or come by. We answer.</p>
+
+  <div class="ct-cols reveal">
+    <form class="ct-form" id="ct-form" onsubmit="event.preventDefault(); document.getElementById('ct-form').classList.add('done');">
+      <div class="ct-field">
+        <label>Name</label>
+        <div class="ct-row">
+          <input type="text" placeholder="First" required />
+          <input type="text" placeholder="Last" required />
+        </div>
+      </div>
+
+      <div class="ct-field">
+        <label>Email</label>
+        <input type="email" placeholder="your@email.com" required />
+      </div>
+
+      <div class="ct-field">
+        <label>Message</label>
+        <textarea placeholder="Tell us how we can help." required></textarea>
+      </div>
+
+      <button type="submit" class="ct-submit">Send Message →</button>
+
+      <div class="ct-confirm">Grazie. We'll be in touch shortly.</div>
+    </form>
+
+    <figure class="ct-vert">
+      <div class="ct-vert-frame">
+        <img class="ct-vert-img" src="img/truffle-gnocchi.png" alt="Truffle gnocchi — gnocchi with shaved black truffle, parsley, and parmesan." />
+      </div>
+      <figcaption class="plate-caption" style="padding-left: 0;">
+        <span class="moon" id="cap-moon"></span>
+        IL CONTATTO &nbsp;·&nbsp; Tartufi nero.
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="ct-details-wrap reveal">
+    <dl class="ct-details">
+      <dt>Call</dt>
+      <dd><a href="tel:+16096888515" style="border-bottom:1px solid var(--hairline);">(609) 688-8515</a></dd>
+
+      <dt>Email</dt>
+      <dd><a href="mailto:lamezzalunaprinceton@gmail.com" style="border-bottom:1px solid var(--hairline);">lamezzalunaprinceton@gmail.com</a></dd>
+
+      <dt>Visit</dt>
+      <dd><a href="https://www.google.com/maps/search/?api=1&query=25+Witherspoon+Street+Princeton+NJ" target="_blank" rel="noopener" style="border-bottom:1px solid var(--hairline);">25 Witherspoon Street<br>Princeton, New Jersey 08540</a></dd>
+
+      <dt>Hours</dt>
+      <dd>Sunday – Thursday &nbsp;&nbsp; 11AM – 9PM<br>Friday – Saturday &nbsp;&nbsp;&nbsp;&nbsp; 11AM – 10PM</dd>
+
+      <dt>Private Events &amp; Large Parties</dt>
+      <dd>For parties of seven or more, please call.</dd>
+    </dl>
+  </div>
+
+  <div class="closing reveal" style="grid-column: 1 / -1;">A presto.</div>
+</main>
+
+<div id="footer-host"></div>
+
+<script src="chrome.js?v=9"></script>
+<script>
+  LM.mountChrome('contact.html');
+  document.getElementById('cap-moon').innerHTML = LM.crescent(11);
+</script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gift Cards · La Mezzaluna</title>
+<meta name="description" content="Gift cards in any amount, redeemable for dine-in or takeout.">
+<meta name="theme-color" content="#5C1F1F">
+<link rel="canonical" href="https://lamezzaluna.com/gift-cards">
+
+<!-- Icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Mezzaluna">
+<meta property="og:title" content="Gift Cards · La Mezzaluna">
+<meta property="og:description" content="Gift cards in any amount, redeemable for dine-in or takeout.">
+<meta property="og:url" content="https://lamezzaluna.com/gift-cards">
+<meta property="og:image" content="https://lamezzaluna.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Gift Cards · La Mezzaluna">
+<meta name="twitter:description" content="Gift cards in any amount, redeemable for dine-in or takeout.">
+<meta name="twitter:image" content="https://lamezzaluna.com/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=9">
+<style>
+  .gift-anchor { padding-top: 120px; }
+  @media (max-width: 768px) { .gift-anchor { padding-top: 64px; } }
+
+  /* 60/40 two-column block: form left, vertical image right */
+  .gift-cols {
+    grid-column: 2 / span 10;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 56px;
+    align-items: start;
+  }
+  @media (max-width: 900px) {
+    .gift-cols { grid-template-columns: 1fr; gap: 48px; }
+  }
+  .gift-left { display: flex; flex-direction: column; }
+  .gift-right { display: flex; flex-direction: column; gap: 14px; }
+
+  .gift-headline {
+    font-family: var(--serif);
+    font-weight: 400;
+    color: var(--wine);
+    font-size: clamp(48px, 7vw, 80px);
+    line-height: 1.1;
+    letter-spacing: -0.015em;
+    margin-bottom: 32px;
+  }
+  .gift-body {
+    font-family: var(--sans);
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 500px;
+  }
+  @media (max-width: 768px) {
+    .gift-cols, .gift-corp { grid-column: 1 / -1 !important; }
+  }
+
+  .gift-form-wrap {
+    max-width: 540px;
+    margin-top: 56px;
+    background: var(--paper);
+    border: 1px solid var(--hairline);
+    padding: 40px;
+  }
+
+  .gift-vertical-img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    background: var(--paper);
+    transition: transform 400ms ease-out;
+  }
+  .gift-vertical:hover .gift-vertical-img { transform: scale(1.02); }
+  .gift-vertical-cap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    color: var(--wine);
+    font-weight: 500;
+  }
+  .gift-vertical-cap .moon { line-height: 0; }
+  .gift-form-label {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    color: var(--wine);
+    font-weight: 500;
+    margin-bottom: 32px;
+  }
+  .gf-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .gf-field label {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 10px;
+    color: var(--wine);
+    font-weight: 500;
+  }
+  .gf-field input,
+  .gf-field select,
+  .gf-field textarea {
+    font-family: var(--sans);
+    font-size: 15px;
+    padding: 12px 14px;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    border-radius: 0;
+    width: 100%;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .gf-field textarea { resize: vertical; min-height: 80px; }
+  .gf-field input:focus, .gf-field select:focus, .gf-field textarea:focus {
+    outline: none;
+    border-color: var(--wine);
+  }
+  .gf-amounts {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+  .gf-amount {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 14px 0;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    color: var(--ink);
+    cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .gf-amount.active, .gf-amount:hover {
+    background: var(--wine);
+    color: var(--paper);
+    border-color: var(--wine);
+  }
+  .gf-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 480px) { .gf-row { grid-template-columns: 1fr; } }
+
+  .gf-submit {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    margin-top: 8px;
+    border: 1px solid var(--wine);
+    background: transparent;
+    color: var(--wine);
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background .2s, color .2s;
+  }
+  .gf-submit:hover { background: var(--wine); color: var(--paper); }
+
+  .gift-corp {
+    grid-column: 2 / span 6;
+    max-width: 600px;
+    margin-top: 96px;
+  }
+</style>
+</head>
+<body>
+<div id="nav-host"></div>
+
+<figure class="hero reveal">
+  <div class="hero-frame">
+    <img class="hero-img photo-hover" src="img/wine-pour.png" alt="A glass of Chianti Classico being poured at a candlelit table, a single red gerbera in the bud vase." />
+  </div>
+  <figcaption class="plate-caption">
+    <span class="moon" id="cap-moon"></span>
+    I REGALI &nbsp;·&nbsp; A pour, for the table.
+  </figcaption>
+</figure>
+
+<div class="page-anchor-text">
+</div>
+
+<main class="grid" style="margin-top: 64px;">
+  <div class="gift-cols reveal">
+    <div class="gift-left">
+      <h1 class="gift-headline">A meal,<br>given.</h1>
+      <p class="gift-body">Gift cards in any amount, redeemable for dine-in or takeout. Sent by email — print it, frame it, forward it. Arrives the same day.</p>
+
+      <form class="gift-form-wrap" onsubmit="event.preventDefault(); alert('Demo only — connect to Squarespace gift card API.');">
+    <div class="gift-form-label">Purchase a Gift Card</div>
+
+    <div class="gf-field">
+      <label>Amount</label>
+      <div class="gf-amounts" id="gf-amounts">
+        <button type="button" class="gf-amount" data-amt="50">$50</button>
+        <button type="button" class="gf-amount active" data-amt="100">$100</button>
+        <button type="button" class="gf-amount" data-amt="150">$150</button>
+        <button type="button" class="gf-amount" data-amt="250">$250</button>
+      </div>
+    </div>
+
+    <div class="gf-row">
+      <div class="gf-field">
+        <label>Recipient Name</label>
+        <input type="text" placeholder="Jane Doe" />
+      </div>
+      <div class="gf-field">
+        <label>Recipient Email</label>
+        <input type="email" placeholder="jane@email.com" />
+      </div>
+    </div>
+
+    <div class="gf-row">
+      <div class="gf-field">
+        <label>Your Name</label>
+        <input type="text" placeholder="From" />
+      </div>
+      <div class="gf-field">
+        <label>Your Email</label>
+        <input type="email" placeholder="you@email.com" />
+      </div>
+    </div>
+
+    <div class="gf-field">
+      <label>Message (optional)</label>
+      <textarea placeholder="Buon appetito."></textarea>
+    </div>
+
+    <button type="submit" class="gf-submit">Send Gift Card →</button>
+      </form>
+    </div>
+    <figure class="gift-right gift-vertical">
+      <img class="gift-vertical-img" src="img/burrata-vertical.png" alt="A plate of burrata with arugula, tomato, roasted red peppers, and balsamic." />
+      <figcaption class="gift-vertical-cap">
+        <span class="moon" id="vp-moon"></span>
+        I REGALI &nbsp;·&nbsp; The table, set.
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="section-break"></div>
+
+  <div class="gift-corp reveal">
+    <div class="sub-block" style="grid-column:auto; max-width:none;">
+      <div class="label">Corporate &amp; Larger Amounts</div>
+      <p>For corporate gifts, custom amounts, or anything outside the dropdown — call <a href="tel:+16096888515" style="border-bottom:1px solid var(--hairline);">(609) 688-8515</a> or email <a href="mailto:lamezzalunaprinceton@gmail.com" style="border-bottom:1px solid var(--hairline);">lamezzalunaprinceton@gmail.com</a>.</p>
+    </div>
+  </div>
+
+  <div class="closing reveal" style="grid-column: 1 / -1;">Italian, in card form.</div>
+</main>
+
+<div id="footer-host"></div>
+
+<script src="chrome.js?v=9"></script>
+<script>
+  LM.mountChrome('gift-cards.html');
+  document.getElementById('cap-moon').innerHTML = LM.crescent(11);
+  document.getElementById('vp-moon').innerHTML = LM.crescent(11);
+  // Amount selector
+  document.querySelectorAll('.gf-amount').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.gf-amount').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

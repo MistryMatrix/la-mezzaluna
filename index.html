@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Mezzaluna · A Taste of Italy</title>
+<meta name="description" content="A small Italian dining room in downtown Princeton. Fifteen years on Witherspoon Street.">
+<meta name="theme-color" content="#5C1F1F">
+<link rel="canonical" href="https://lamezzaluna.com/">
+
+<!-- Icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Mezzaluna">
+<meta property="og:title" content="La Mezzaluna · A Taste of Italy">
+<meta property="og:description" content="A small Italian dining room in downtown Princeton. Fifteen years on Witherspoon Street.">
+<meta property="og:url" content="https://lamezzaluna.com/">
+<meta property="og:image" content="https://lamezzaluna.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="La Mezzaluna · A Taste of Italy">
+<meta name="twitter:description" content="A small Italian dining room in downtown Princeton. Fifteen years on Witherspoon Street.">
+<meta name="twitter:image" content="https://lamezzaluna.com/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=9">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "La Mezzaluna",
+  "image": "https://lamezzaluna.com/og-image.png",
+  "url": "https://lamezzaluna.com/",
+  "telephone": "+1-609-688-8515",
+  "priceRange": "$",
+  "servesCuisine": "Italian",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "25 Witherspoon Street",
+    "addressLocality": "Princeton",
+    "addressRegion": "NJ",
+    "postalCode": "08540",
+    "addressCountry": "US"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday"
+      ],
+      "opens": "11:00",
+      "closes": "21:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "11:00",
+      "closes": "22:00"
+    }
+  ],
+  "acceptsReservations": "True"
+}
+</script>
+<style>
+  .home-h {
+    grid-column: 2 / span 8;
+    margin-top: 96px;
+  }
+  .home-h .h-main {
+    font-family: var(--serif);
+    font-weight: 400;
+    color: var(--wine);
+    font-size: clamp(48px, 7vw, 72px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    max-width: 600px;
+  }
+  .home-h .h-italic {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--wine);
+    font-size: clamp(28px, 4.5vw, 44px);
+    line-height: 1.2;
+    margin-top: 24px;
+    letter-spacing: -0.005em;
+  }
+  @media (max-width: 768px) {
+    .home-h { grid-column: 1 / -1; margin-top: 56px; }
+  }
+
+  .nav-plates {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 96px;
+    padding: 0 48px;
+  }
+  @media (max-width: 768px) {
+    .nav-plates { grid-template-columns: 1fr; gap: 32px; padding: 0 24px; margin-top: 64px; }
+  }
+  .nav-plate {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    color: inherit;
+    cursor: pointer;
+  }
+  .nav-plate-frame {
+    overflow: hidden;
+    width: 100%;
+  }
+  .nav-plate-img {
+    width: 100%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    background: var(--paper);
+    transition: transform 400ms ease-out;
+  }
+  .nav-plate-img.placeholder {
+    border: 1px solid var(--wine);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .nav-plate:hover .nav-plate-img { transform: scale(1.02); }
+  .nav-plate-cap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    color: var(--wine);
+    font-weight: 500;
+    opacity: 0.85;
+    transition: opacity 400ms ease-out;
+  }
+  .nav-plate:hover .nav-plate-cap { opacity: 1; }
+  .nav-plate-cap .moon { line-height: 0; }
+</style>
+</head>
+<body>
+<div id="nav-host"></div>
+
+<figure class="hero reveal">
+  <div class="hero-frame">
+    <img class="hero-img photo-hover" src="img/dining-room-mural.png" alt="The far wall of the dining room, holding a large cream-and-beige mural that curls like a slow wave or a half-moon, dramatically lit from above." />
+  </div>
+  <figcaption class="plate-caption">
+    <span class="moon" id="cap-moon"></span>
+    LA SOGLIA &nbsp;·&nbsp; The dining room, looking east.
+  </figcaption>
+</figure>
+
+<main class="grid">
+  <div class="home-h reveal">
+    <div class="h-main">A small Italian dining room in Princeton.</div>
+    <div class="h-italic">Fifteen years on Witherspoon.</div>
+  </div>
+
+  <p class="body-p reveal">
+    The name carries two meanings. <em>Mezzaluna</em> is the half-moon — and the curved, two-handled Italian knife used to mince herbs and slice pizza. We chose not to choose. The kitchen leans north — risotto, branzino, ossobuco, pappardelle. The room holds twelve tables and a mural that looks, depending on the light, like either.
+  </p>
+
+  <div class="nav-plates reveal">
+    <a class="nav-plate" href="menu.html">
+      <div class="nav-plate-frame">
+        <img class="nav-plate-img" src="img/hero-pasta.png" alt="A plate of linguini marechiaro." />
+      </div>
+      <div class="nav-plate-cap">
+        <span class="moon" id="np-moon-1"></span>
+        LA CUCINA &nbsp;·&nbsp; The menu →
+      </div>
+    </a>
+
+    <a class="nav-plate" href="visit.html">
+      <div class="nav-plate-frame">
+        <img class="nav-plate-img" src="img/storefront-dusk.png" alt="The La Mezzaluna storefront on Witherspoon Street at dusk." />
+      </div>
+      <div class="nav-plate-cap">
+        <span class="moon" id="np-moon-2"></span>
+        LA POSIZIONE &nbsp;·&nbsp; The location →
+      </div>
+    </a>
+
+    <a class="nav-plate" href="https://app.getyomojo.com/mojoweb/?vendor=QWtkWXGFDM" target="_blank" rel="noopener">
+      <div class="nav-plate-frame">
+        <img class="nav-plate-img" src="img/order-online.png" alt="A La Mezzaluna takeout bag on the host stand, the dining room glowing behind it." />
+      </div>
+      <div class="nav-plate-cap">
+        <span class="moon" id="np-moon-3"></span>
+        IL PRANZO &nbsp;·&nbsp; Curbside takeout →
+      </div>
+    </a>
+  </div>
+
+  <div class="closing reveal" style="grid-column: 1 / -1;">A Taste of Italy.</div>
+</main>
+
+<div id="footer-host"></div>
+
+<script src="chrome.js?v=9"></script>
+<script>
+  LM.mountChrome('index.html');
+  document.getElementById('cap-moon').innerHTML = LM.crescent(11);
+  document.getElementById('np-moon-1').innerHTML = LM.crescent(11);
+  document.getElementById('np-moon-2').innerHTML = LM.crescent(11);
+  document.getElementById('np-moon-3').innerHTML = LM.crescent(11);
+</script>
+</body>
+</html>

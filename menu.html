@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Menu · La Mezzaluna</title>
+<meta name="description" content="Antipasti, pasta, risotto, secondi. A seasonal Northern Italian menu in downtown Princeton.">
+<meta name="theme-color" content="#5C1F1F">
+<link rel="canonical" href="https://lamezzaluna.com/menu">
+
+<!-- Icons -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="La Mezzaluna">
+<meta property="og:title" content="Menu · La Mezzaluna">
+<meta property="og:description" content="Antipasti, pasta, risotto, secondi. A seasonal Northern Italian menu in downtown Princeton.">
+<meta property="og:url" content="https://lamezzaluna.com/menu">
+<meta property="og:image" content="https://lamezzaluna.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Menu · La Mezzaluna">
+<meta name="twitter:description" content="Antipasti, pasta, risotto, secondi. A seasonal Northern Italian menu in downtown Princeton.">
+<meta name="twitter:image" content="https://lamezzaluna.com/og-image.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,400;0,500;1,400;1,500&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=9">
+<style>
+  /* Menu specific */
+  .menu-tabs {
+    grid-column: 2 / span 10;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin-top: 64px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .menu-tab {
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--ink);
+    padding: 0 0 16px;
+    cursor: pointer;
+    background: none;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    margin-bottom: -1px;
+    transition: color .2s, border-color .2s;
+  }
+  .menu-tab:hover { color: var(--wine); }
+  .menu-tab.active {
+    color: var(--wine);
+    border-bottom-color: var(--wine);
+  }
+
+  .menu-panel {
+    grid-column: 2 / span 10;
+    margin-top: 64px;
+    max-width: 1000px;
+  }
+  .menu-empty {
+    grid-column: 2 / span 10;
+    margin-top: 64px;
+    font-family: var(--sans);
+    font-style: italic;
+    font-size: 18px;
+    color: rgba(26, 20, 16, 0.5);
+  }
+
+  .menu-section {
+    margin-bottom: 64px;
+  }
+  .menu-section-name {
+    font-family: var(--serif);
+    font-weight: 500;
+    color: var(--wine);
+    font-size: 22px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .menu-section-note {
+    font-family: var(--sans);
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(26, 20, 16, 0.65);
+    margin: -16px 0 28px;
+  }
+  .menu-intro-italic {
+    font-family: var(--sans);
+    font-style: italic;
+    font-size: 16px;
+    color: rgba(26, 20, 16, 0.7);
+    text-align: center;
+    margin: 8px 0 56px;
+  }
+  .dish-upcharge {
+    font-family: var(--sans);
+    font-style: italic;
+    font-size: 14px;
+    color: rgba(26, 20, 16, 0.55);
+    padding-left: 16px;
+    margin-top: 4px;
+    line-height: 1.7;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px 64px;
+  }
+  @media (max-width: 768px) {
+    .menu-grid { grid-template-columns: 1fr; gap: 32px; }
+    .menu-panel, .menu-tabs, .menu-empty, .menu-notes, .menu-cta { grid-column: 1 / -1 !important; }
+  }
+
+  .dish {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .dish-line {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    font-family: var(--sans);
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 15px;
+  }
+  .dish-name {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    flex: 0 0 auto;
+  }
+  .dish-leader {
+    flex: 1 1 auto;
+    border-bottom: 1px dotted rgba(26, 20, 16, 0.35);
+    transform: translateY(-4px);
+  }
+  .dish-price {
+    flex: 0 0 auto;
+    font-variant-numeric: tabular-nums;
+  }
+  .dish-desc {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(26, 20, 16, 0.75);
+    line-height: 1.55;
+  }
+
+  .menu-notes {
+    grid-column: 2 / span 10;
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--hairline);
+    font-family: var(--mono);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--wine);
+    line-height: 2;
+  }
+
+  .menu-cta {
+    grid-column: 2 / span 10;
+    margin-top: 48px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+</style>
+</head>
+<body>
+<div id="nav-host"></div>
+
+<figure class="hero reveal">
+  <div class="hero-frame">
+    <img class="hero-img photo-hover" src="img/hero-pasta.png" alt="A plate of linguini marechiaro with clams, mussels, scallops, jumbo shrimp, and calamari in a house marinara." />
+  </div>
+  <figcaption class="plate-caption">
+    <span class="moon" id="cap-moon"></span>
+    LA CUCINA &nbsp;·&nbsp; Linguini marechiaro.
+  </figcaption>
+</figure>
+
+<main class="grid" style="margin-top: 96px;">
+  <h1 class="anchor-h med reveal">The kitchen rotates with the season.</h1>
+
+  <p class="body-p reveal">Below is the current dinner menu. Lunch, family-style takeout, and desserts are accessible above. For tonight's specials, ask your server.</p>
+
+  <div class="menu-tabs reveal">
+    <button class="menu-tab active" data-tab="dinner">Dinner</button>
+    <button class="menu-tab" data-tab="lunch">Lunch</button>
+    <button class="menu-tab" data-tab="family">Family Meals (Takeout)</button>
+    <button class="menu-tab" data-tab="desserts">Desserts</button>
+  </div>
+
+  <!-- DINNER -->
+  <div class="menu-panel" data-panel="dinner">
+
+    <div class="menu-section">
+      <div class="menu-section-name">Antipasti</div>
+      <div class="menu-grid" id="g-antipasti"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Insalata</div>
+      <div class="menu-grid" id="g-insalata"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Pasta</div>
+      <div class="menu-section-note">Gluten-free and whole-wheat pasta available on request.</div>
+      <div class="menu-grid" id="g-pasta"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Risotto</div>
+      <div class="menu-grid" id="g-risotto"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Secondi</div>
+      <div class="menu-grid" id="g-secondi"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Contorni</div>
+      <div class="menu-grid" id="g-contorni"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Bevande</div>
+      <div class="menu-grid" id="g-bevande"></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" data-panel="lunch" hidden>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Antipasti</div>
+      <div class="menu-grid" id="g-l-antipasti"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Insalata</div>
+      <div class="menu-grid" id="g-l-insalata"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Pasta</div>
+      <div class="menu-section-note">Gluten-free and whole-wheat pasta available on request.</div>
+      <div class="menu-grid" id="g-l-pasta"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Risotto</div>
+      <div class="menu-grid" id="g-l-risotto"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Secondi</div>
+      <div class="menu-grid" id="g-l-secondi"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Sandwiches</div>
+      <div class="menu-section-note">Served with homemade fries or salad.</div>
+      <div class="menu-grid" id="g-l-sandwiches"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Bevande</div>
+      <div class="menu-grid" id="g-l-bevande"></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" data-panel="family" hidden>
+    <div class="menu-intro-italic">Family trays serve four to six people.</div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Antipasti</div>
+      <div class="menu-grid" id="g-f-antipasti"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Pasta</div>
+      <div class="menu-grid" id="g-f-pasta"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Secondi</div>
+      <div class="menu-grid" id="g-f-secondi"></div>
+    </div>
+
+    <div class="menu-section">
+      <div class="menu-section-name">Dolci</div>
+      <div class="menu-grid" id="g-f-dolci"></div>
+    </div>
+  </div>
+
+  <div class="menu-panel" data-panel="desserts" hidden>
+    <div class="menu-section">
+      <div class="menu-section-name">Dolci</div>
+      <div class="menu-grid" id="g-d-dolci"></div>
+    </div>
+  </div>
+
+  <div class="menu-notes reveal">
+    Gluten-free and whole-wheat pasta — available on request.<br>
+    Dietary accommodations — ask your server.<br>
+    20% gratuity added to parties of six or more.
+  </div>
+
+  <div class="menu-cta reveal">
+    <a class="btn" href="https://app.getyomojo.com/mojoweb/?vendor=QWtkWXGFDM" target="_blank" rel="noopener">Order Online — Curbside Pickup</a>
+    <a class="btn" href="visit.html#reservations">Reserve a Table</a>
+  </div>
+</main>
+
+<figure class="extra-plate reveal" style="margin-top: 80px;">
+  <div class="hero-frame">
+    <img class="hero-img photo-hover" src="img/tabletop-spread.png" alt="A spread of plates on the tabletop — pasta with shaved cheese, calamari salad, marechiaro, burrata with greens, bread, and a glass of red wine." />
+  </div>
+  <figcaption class="plate-caption">
+    <span class="moon" id="cap-moon-2"></span>
+    LA CUCINA &nbsp;·&nbsp; La cena.
+  </figcaption>
+</figure>
+
+<main class="grid">
+  <div class="closing reveal" style="grid-column: 1 / -1;">Buon appetito.</div>
+</main>
+
+<div id="footer-host"></div>
+
+<style>
+  .extra-plate { width: 100%; }
+  .extra-plate .hero-frame { overflow: hidden; }
+  .extra-plate .hero-img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+</style>
+<script src="chrome.js?v=9"></script>
+<script>
+  LM.mountChrome('menu.html');
+  document.getElementById('cap-moon').innerHTML = LM.crescent(11);
+  document.getElementById('cap-moon-2').innerHTML = LM.crescent(11);
+
+  // ---- Menu data ----
+  // Dish tuples: [name, price, desc] OR [name, price, desc, upcharges[]] where upcharges = [['label', 'delta'], ...]
+  const MENUS = {
+    d: {
+      antipasti: [
+      ['Calamari Fritti', '19', 'With balsamic glaze and marinara.'],
+      ['Arancini', '15', 'Homemade rice balls, mozzarella and peas, blush cream sauce.'],
+      ['Truffle Gnocchi', '19', 'With fresh black truffles.'],
+      ['Eggplant Rollantini', '14', 'Stuffed with ricotta, topped with mozzarella, in a tomato basil sauce.'],
+      ['Pumpkin Ravioli', '16', 'Brunoised squash, mascarpone cream cheese, fresh basil brown butter.'],
+      ['Bruschetta Caprese', '16', 'Stracciatella, drizzled with balsamic reduction.'],
+    ],
+      insalata: [
+      ['Mix Greens', '13', 'Avocado, caramelized walnuts, cherry tomato, crumbled feta, lemon dressing.'],
+      ['Caesar', '15', 'Romaine and croutons, house-made parmigiano reggiano dressing.'],
+      ['Warm Braised Duck', '17', 'Crisp goat cheese, butter lettuce, toasted almonds, agrodolce balsamic vinaigrette.'],
+      ['Burrata', '17', 'Arugula, fresh tomato, roasted red peppers, balsamic reduction.'],
+    ],
+      pasta: [
+      ['Rigatoni', '25', 'Shallots, grape tomatoes, vodka, blush cream sauce.'],
+      ['Cannelloni Vegetariani', '25', 'Baby spinach, red peppers, eggplant, onions, ricotta. Topped with fresh mozzarella over pesto cream sauce.'],
+      ['Pappardelle al Pesto', '26', 'Smoked salmon, artichokes, asparagus, mushrooms, grape tomatoes, basil pesto.'],
+      ['Fettuccini', '23', 'Italian eggplant, sweet red peppers, shallots, tomato basil sauce, mozzarella.'],
+      ['Linguini Marechiaro', '37', 'Clams, mussels, scallops, jumbo shrimp, calamari. House marinara.'],
+      ['Pappardelle Bolognese', '27', 'Ground Angus beef, slow-cooked ragù.'],
+    ],
+      risotto: [
+      ["Alysa's Risotto", '26', 'Vegan, vegetarian, gluten-free. Wild mushrooms, grape tomatoes, baby spinach.'],
+      ['Risotto', '29', 'Red peppers, shiitake mushrooms, fontina, spinach pesto. Garnished with crispy applewood smoked bacon.'],
+      ['Saffron Risotto', '32', 'Jumbo shrimp, asparagus, grape tomatoes, lemon zest.'],
+    ],
+      secondi: [
+      ['Chicken Parmiggiana', '29', 'Over linguini with marinara. With vodka sauce, $31.'],
+      ['Pork Ossobuco', '36', 'Slow-cooked, served over wild mushroom risotto.'],
+      ['Chicken and Sausage Marsala', '29', 'Sweet Italian sausage, portabella mushrooms, roasted potatoes, red peppers in marsala.'],
+      ['Chicken al Vino Bianco', '28', 'Wild mushrooms, artichoke hearts, baby spinach, grape tomatoes, white wine garlic sauce.'],
+      ['Hazelnut and Walnut Encrusted Rack of Lamb', '40', 'With vegetables and potatoes, demi-glace.'],
+      ['Branzino Fillet', '37', 'Broiled, with a creamy lobster risotto and tomato bruschetta.'],
+    ],
+      contorni: [
+      ['Sauteed Spinach', '10', ''],
+      ['Sauteed Wild Mushroom', '10', ''],
+      ['Sauteed Broccoli', '10', ''],
+    ],
+      bevande: [
+      ['Sparkling / Still Water', '9', ''],
+      ['San Pellegrino Aranciata', '4.5', ''],
+      ['Soda / Tea', '4.5', 'Pepsi, Diet Pepsi, Sierra Mist, unsweetened iced tea.'],
+      ['Mighty Leaf Tea', '4', ''],
+      ['Coffee', '4', ''],
+      ['Espresso Napoli', '4', ''],
+      ['Cappuccino', '5.50', ''],
+    ],
+    },
+    l: {
+      antipasti: [
+        ['Calamari Fritti', '19', 'With balsamic glaze and marinara.'],
+        ['Arancini', '15', 'Homemade rice balls, mozzarella and peas, blush cream sauce.'],
+        ['Truffle Gnocchi', '19', 'With fresh black truffles.'],
+        ['Eggplant Rollantini', '14', 'Stuffed with ricotta, topped with mozzarella, in a tomato basil sauce.'],
+        ['Bruschetta Caprese', '16', 'Stracciatella, drizzled with balsamic reduction.'],
+      ],
+      insalata: [
+        ['Tuna', '18', 'Peppercorn-encrusted sushi-grade tuna over baby spinach, lemon vinaigrette.'],
+        ['Steak', '18', 'N.Y. strip steak over baby spinach, caramelized walnuts, lemon vinaigrette.'],
+        ['Organic Greens', '11', 'Gorgonzola, grape tomatoes, balsamic vinaigrette.', [['with grilled chicken', '+$5'], ['with grilled shrimp', '+$8']]],
+        ['Caesar', '12', 'Romaine, house-made croutons, parmigiano reggiano dressing.', [['with grilled chicken', '+$4'], ['with grilled shrimp', '+$7']]],
+        ['Warm Braised Duck', '18', 'Crisp goat cheese, butter lettuce, toasted almonds, agrodolce vinaigrette.'],
+      ],
+      pasta: [
+        ['Linguini Seafood', '25', 'Clams, mussels, bay scallops, calamari, rock shrimp in marinara.'],
+        ['Rigatoni', '20', 'Shallots, grape tomatoes, vodka, blush cream sauce.'],
+        ['Fettuccini', '18', 'Italian eggplant, sweet red peppers, caramelized shallots, tomato basil, mozzarella.'],
+        ['Pappardelle al Pesto', '19', 'Smoked salmon, artichokes, asparagus, mushrooms, grape tomatoes, garlic olive oil pesto.'],
+        ['Pappardelle Bolognese', '19', 'Ground Angus beef, slow-cooked ragù.'],
+      ],
+      risotto: [
+        ["Alysa's Risotto", '19', 'Vegan, vegetarian, gluten-free. Wild mushrooms, grape tomatoes, baby spinach.'],
+        ['Risotto', '21', 'Red peppers, shiitake mushrooms, fontina, spinach pesto. Crispy applewood smoked bacon.'],
+        ['Saffron Risotto', '24', 'Jumbo shrimp, asparagus, grape tomatoes, lemon zest.'],
+      ],
+      secondi: [
+        ['Chicken Parmiggiana', '21', 'With linguini. Vodka sauce option, $23.'],
+        ['Chicken and Sausage Marsala', '21', 'Sweet Italian sausage, portabella mushrooms, roasted potatoes, red peppers, marsala.'],
+        ['Chicken al Vino Bianco', '20', 'Wild mushrooms, artichoke hearts, baby spinach, grape tomatoes, white wine garlic.'],
+        ['Hazelnut and Walnut Encrusted Rack of Lamb', '30', 'With vegetables, potatoes, demi-glace.'],
+        ['Branzino Fillet', '27', 'Broiled, herb risotto, tomato bruschetta.'],
+      ],
+      sandwiches: [
+        ['Eggplant or Chicken Parmiggiana', '14', 'Marinara, mozzarella.'],
+        ['Steak', '19', 'Caramelized onions, mushrooms, mozzarella.'],
+        ['Grilled Chicken', '15', 'Fresh mozzarella, prosciutto di Parma, pesto.'],
+        ['Caprese', '14', 'Fresh mozzarella, tomato, roasted red peppers, basil.'],
+      ],
+      bevande: [
+        ['Sparkling / Still Water', '9', ''],
+        ['San Pellegrino Aranciata', '4.5', ''],
+        ['Soda / Tea', '4.5', 'Pepsi, Diet Pepsi, Sierra Mist, unsweetened iced tea.'],
+        ['Mighty Leaf Tea', '4', ''],
+        ['Coffee', '4', ''],
+        ['Espresso Napoli', '4', ''],
+        ['Cappuccino', '5.50', ''],
+      ],
+    },
+    f: {
+      antipasti: [
+        ['Mussels', '45', 'Sautéed with grape tomatoes and white wine.'],
+        ['Eggplant Rollatini', '45', 'Stuffed with ricotta, topped with mozzarella, fresh tomato basil sauce.'],
+        ['Organic Greens', '45', 'Gorgonzola, grape tomatoes, homemade vinaigrette.'],
+        ['Caesar Salad', '47', 'Romaine in homemade Caesar dressing, fresh croutons.'],
+        ['Chicken Tenders', '47', 'Deep-fried, with homemade fries.'],
+      ],
+      pasta: [
+        ['Rigatoni', '60', 'Tomato basil sauce, eggplant, sweet red peppers, caramelized shallots, mozzarella.'],
+        ['Rigatoni Bolognese', '60', 'Hearty homemade beef ragù.'],
+        ['Rigatoni Vodka', '70', 'Vodka, heavy cream, grape tomatoes, shallots.'],
+      ],
+      secondi: [
+        ['Chicken Parmiggiana', '75', 'Shallow-fried chicken breast in hearty marinara, fresh mozzarella.'],
+        ['Chicken Marsala', '75', 'Marsala wine, sweet Italian sausage, portobello mushrooms, roasted potatoes, red pepper.'],
+        ['Chicken al Vino Bianco', '75', 'White wine, garlic, artichoke hearts, wild mushrooms, asparagus, grape tomatoes.'],
+        ['Chicken Marinara', '75', 'Light marinara, basil, baby spinach, ricotta, fresh mozzarella.'],
+      ],
+      dolci: [
+        ['Dessert Tray', '45', 'Ricotta cheesecake, fritters, tiramisu.'],
+      ],
+    },
+    d2: {
+      dolci: [
+        ['Tiramisu', '13', 'Ladyfingers in espresso and amaretto, mascarpone mousse, dusted sugar.'],
+        ['Affogato', '13', 'House-made vanilla gelato, creamy espresso.'],
+        ['Traditional Crème Brûlée', '13', 'Silky vanilla custard, caramelized sugar.'],
+        ['Ricotta Cheesecake', '13', 'Whipped cream, marinated berries.'],
+        ['Seasonal Fruit Flambé', '19', 'Prepared tableside over house-made gelato. Not available for takeout.'],
+        ['Ricotta Fritters', '13', 'Shallow-fried ricotta, semi-sweet chocolate morsels, dusted sugar, house chocolate sauce.'],
+      ],
+    },
+  };
+
+  function renderSection(hostId, items) {
+    const host = document.getElementById(hostId);
+    if (!host) return;
+    host.innerHTML = items.map((row) => {
+      const [name, price, desc, upcharges] = row;
+      const upHtml = upcharges ? upcharges.map(([label, delta]) =>
+        `<div class="dish-upcharge">${label}<span style="float:right;">${delta}</span></div>`
+      ).join('') : '';
+      return `
+        <div class="dish">
+          <div class="dish-line">
+            <span class="dish-name">${name}</span>
+            <span class="dish-leader"></span>
+            <span class="dish-price">$${price}</span>
+          </div>
+          ${desc ? `<div class="dish-desc">${desc}</div>` : ''}
+          ${upHtml}
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Map menu prefix -> id prefix used in markup
+  const PREFIX = { d: 'g-', l: 'g-l-', f: 'g-f-', d2: 'g-d-' };
+  Object.keys(MENUS).forEach(menuKey => {
+    const sections = MENUS[menuKey];
+    Object.keys(sections).forEach(sectionKey => {
+      renderSection(PREFIX[menuKey] + sectionKey, sections[sectionKey]);
+    });
+  });
+
+  // Tabs
+  const tabs = document.querySelectorAll('.menu-tab');
+  const panels = document.querySelectorAll('[data-panel]');
+  tabs.forEach(t => {
+    t.addEventListener('click', () => {
+      const target = t.dataset.tab;
+      tabs.forEach(x => x.classList.toggle('active', x === t));
+      panels.forEach(p => {
+        const match = p.dataset.panel === target;
+        p.hidden = !match;
+      });
+    });
+  });
+</script>
+</body>
+</html>
